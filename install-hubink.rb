@@ -32,7 +32,7 @@ dep 'rvm', :version do
 		in_path? "rvm >= #{version}"
 	}
 	meet {
-		log_shell("Installing rvm..#{version}","sh -c \"\`curl -L https://get.rvm.io\`\" | bash -s -- --version #{version}")
+		log_shell("Installing rvm..#{version}","curl -L https://get.rvm.io | bash -s -- --version #{version}")
 	}
 end
 
