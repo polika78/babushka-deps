@@ -57,6 +57,7 @@ dep 'ruby', :version do
 	}
 	meet {
 		log_shell("Installing ruby..#{version}","echo volder | sudo -S rvm install ruby-#{version} --autolibs=3")
+		log_shell("RVM requirements","rvm requirements")
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
 	}
 end
