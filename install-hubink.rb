@@ -52,7 +52,7 @@ dep 'rvm', :version do
 end
 
 dep 'ruby', :version do
-	version.default!('2.0.0')
+	version.default!('2.0.0p0')
 	met? {
 		in_path? "ruby >= #{version}"
 	}
