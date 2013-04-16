@@ -1,9 +1,9 @@
 dep 'install hubink' do
 	requires [
 		'bundler',
+		'homebrew',
 		'rvm',
 		'ruby',
-		'homebrew',
 		'mysql',
 		'pow',
 		'myadbox',
