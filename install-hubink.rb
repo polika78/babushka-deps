@@ -56,17 +56,25 @@ dep 'ruby', :version do
 		in_path? "ruby >= #{version}0p"
 	}
 	meet {
-		log_shell("Installing rvm requirements for ox ...", "rvm requirements")
-		#log_shell("Installing ruby..#{version}","echo volder | sudo -S rvm install ruby-#{version} --autolibs=3")
+		log_shell("Make sure latest RVM..","rvm get stable --autolibs=enable")
+		log_shell("Installing ruby..#{version}","echo volder | sudo -S rvm install #{version} ")
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
 	}
 end
 
 dep 'mysql' , :version do
+	user.ask("User to run mysql with").default(shell('whoami'))
 
+	met? {
+		"/usr/local/var/mysql".p.exists?
+	}
+	meet {
+		log_shell("Installing MySQL... by homebrew","brew install mysql")
+	}
 end
 
 dep 'pow' do
+	requires 'mysql root password', :db_admin_password=>"new-password"
 end
 
 dep 'myadbox' do
