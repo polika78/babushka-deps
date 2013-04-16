@@ -46,6 +46,7 @@ dep 'rvm', :version do
 	}
 	meet {
 		log_shell("Installing rvm..#{version}","curl -L https://get.rvm.io | bash -s -- --version #{version}")
+		#log_shell("Installing rvm requirements for ox ...", "rvm requirements")
 	}
 end
 
@@ -55,7 +56,7 @@ dep 'ruby', :version do
 		in_path? "ruby >= #{version}0p"
 	}
 	meet {
-		log_shell("Installing ruby..#{version}","rvm install ruby-#{version}")
+		log_shell("Installing ruby..#{version}","rvm install ruby-#{version} --autolibs=3")
 	}
 end
 
