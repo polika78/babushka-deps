@@ -1,16 +1,16 @@
 dep 'install hubink' do
 	requires [
-		'bundler'
-		'rubygems'
-		'homebrew'
-		'mysql'
-		'pow'
-		'myadbox'
-		'myadserver'
-		'nodejs'
-		'myadscripts'
-		'indesign'
-		'dropbox'
+		'bundler',
+		'rubygems',
+		'homebrew',
+		'mysql',
+		'pow',
+		'myadbox',
+		'myadserver',
+		'nodejs',
+		'myadscripts',
+		'indesign',
+		'dropbox',
 		'apache-MAMP'
 	]
 end
@@ -26,7 +26,7 @@ dep 'bundler', :version do
 end
 
 dep 'mysql' , :version do
-	
+
 end
 
 dep 'pow' do
