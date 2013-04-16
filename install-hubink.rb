@@ -5,6 +5,6 @@ dep "install hubink", :version do
 		in_path "bundle >= #{version}"
 	}
 	meet {
-		log_shell("Installing Bundler..#{version}", "gem install bundler"}
+		log_shell("Installing Bundler..#{version}", "gem install bundler")
 	}
 end
