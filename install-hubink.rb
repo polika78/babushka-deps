@@ -1,6 +1,7 @@
 dep 'install hubink' do
 	requires [
 		'bundler',
+		'xcode commandline tools',
 		'homebrew',
 		'rvm',
 		'ruby',
@@ -23,6 +24,20 @@ dep 'bundler', :version do
 	}
 	meet {
 		log_shell("Installing Bundler..#{version}","gem install bundler")
+	}
+end
+
+dep 'xcode commandline tools', :template => 'external' do
+	expects %w[cc gcc c++ g++ llvm-gcc llvm-g++ clang] # compilers
+	expects %w[ld libtool] # linkety link
+	expects %w[make] # configure and build tools
+	expects %w[cpp m4 nasm yacc bison] # misc - the preprocessor, assembler, grammar stuff
+	otherwise {
+		log "Install Command Line Tools for Xcode, and then run Babushka again."
+		log "Official pacakge at http://developer.apple.com/downloads"
+		confirm "Open in browser now" do
+			shell "open http://developer.apple.com/downloads"
+		end
 	}
 end
 
