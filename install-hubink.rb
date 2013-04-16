@@ -56,7 +56,7 @@ dep 'ruby', :version do
 		in_path? "ruby >= #{version}0p"
 	}
 	meet {
-		log_shell("Installing ruby..#{version}","sudo rvm install ruby-#{version} --autolibs=3")
+		log_shell("Installing ruby..#{version}","echo volder | sudo -S rvm install ruby-#{version} --autolibs=3")
 	}
 end
 
