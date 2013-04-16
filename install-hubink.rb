@@ -33,11 +33,9 @@ dep 'xcode commandline tools', :template => 'external' do
 	expects %w[make] # configure and build tools
 	expects %w[cpp m4 nasm yacc bison] # misc - the preprocessor, assembler, grammar stuff
 	otherwise {
-		log "Install Command Line Tools for Xcode, and then run Babushka again."
-		log "Official pacakge at http://developer.apple.com/downloads"
-		confirm "Open in browser now" do
-			shell "open http://developer.apple.com/downloads"
-		end
+		log "Install Command Line Tools for Xcode."
+		log "xcode gcc-installer for xos 10.7 at http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg"
+		shell "installer -pkg \"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\" -target /"
 	}
 end
 
