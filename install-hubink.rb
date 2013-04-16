@@ -50,9 +50,9 @@ dep 'rvm', :version do
 end
 
 dep 'ruby', :version do
-	version.default!('2.0.0p0')
+	version.default!('2.0.0')
 	met? {
-		in_path? "ruby >= #{version}"
+		in_path? "ruby >= #{version}0p"
 	}
 	meet {
 		log_shell("Installing ruby..#{version}","rvm install ruby-#{version}")
