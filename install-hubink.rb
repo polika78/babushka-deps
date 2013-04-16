@@ -1,7 +1,8 @@
 dep 'install hubink' do
 	requires [
 		'bundler',
-		'rubygems',
+		'rvm',
+		'ruby',
 		'homebrew',
 		'mysql',
 		'pow',
@@ -22,6 +23,26 @@ dep 'bundler', :version do
 	}
 	meet {
 		log_shell("Installing Bundler..#{version}","gem install bundler")
+	}
+end
+
+dep 'rvm', :version do
+	version.default!('1.19.0')
+	met? {
+		in_path? "rvm >= #{version}"
+	}
+	meet {
+		log_shell("Installing rvm..#{version}","sh -c \"\`curl -L https://get.rvm.io\`\" | bash -s -- --version #{version}")
+	}
+end
+
+dep 'ruby', :version do
+	version.default!('2.0.0')
+	met? {
+		in_path? "bundle >= #{version}"
+	}
+	meet {
+		log_shell("Installing ruby..#{version}","rvm install ruby-#{version}")
 	}
 end
 
