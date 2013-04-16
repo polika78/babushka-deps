@@ -1,6 +1,6 @@
 dep "install hubink", :version do
 	version.default!('1.3.4')
-	require "rubygems"
+	requires "rubygems"
 	met? {
 		in_path "bundle >= #{version}"
 	}
