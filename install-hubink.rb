@@ -21,7 +21,7 @@ end
 
 dep 'sudo path' do
 	met? {
-		File.writable?("/usr")
+		File.writable?("/usr/local")
 	}
 	meet {
 		log_shell("Change permission of /usr/local","echo volder | sudo -S chown -R hubink /usr/local")
