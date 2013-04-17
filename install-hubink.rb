@@ -8,6 +8,7 @@ dep 'install hubink' do
 		'ruby'.with("2.0.0"),
 		'cmake',
 		'mysql',
+		'mysql root password',
 		'pow',
 		'myadbox',
 		'myadserver',
@@ -83,7 +84,6 @@ dep 'mysql' , :user do
 	user.ask("User to run mysql with").default(shell('whoami'))
 	met? {
 		"/usr/local/var/mysql".p.exists?
-		#requires 'mysql root password'
 	}
 	meet {
 		log_shell("Installing MySQL... by homebrew","brew install mysql")
