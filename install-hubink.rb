@@ -64,7 +64,6 @@ end
 
 dep 'mysql' , :user do
 	user.ask("User to run mysql with").default(shell('whoami'))
-
 	met? {
 		"/usr/local/var/mysql".p.exists?
 	}
@@ -73,8 +72,13 @@ dep 'mysql' , :user do
 	}
 end
 
+dep 'mysql root password', :db_admin_password=>"new-password"do
+  met? { raw_shell("echo '\q' | mysql -u root").stderr["Access denied for user 'root'@'localhost' (using password: NO)"] }
+  meet { mysql(%Q{GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '#{var :db_admin_password}'}, 'root', false) }
+end
+
 dep 'pow' do
-	requires 'mysql root password', :db_admin_password=>"new-password"
+	requires 'mysql root password'
 end
 
 dep 'myadbox' do
