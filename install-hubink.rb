@@ -1,10 +1,11 @@
 dep 'install hubink' do
 	requires [
-		'bundler',
-		'xcode commandline tools',
+		'sudo path',
+		'bundler'.with("1.3.4"),
+		'xcode commandline install',
 		'homebrew',
-		'rvm',
-		'ruby',
+		'rvm'.with("1.19.0"),
+		'ruby'.with("2.0.0"),
 		'mysql',
 		'pow',
 		'myadbox',
@@ -17,8 +18,16 @@ dep 'install hubink' do
 	]
 end
 
+dep 'sudo path' do
+	met? {
+		File.writable?("/usr/local")
+	}
+	meet {
+		log_shell("Change permission of /usr/local","echo volder | sudo -S chown -R hubink /usr/local")
+	}
+end
+
 dep 'bundler', :version do
-	version.default!('1.3.4')
 	met? {
 		in_path? "bundle >= #{version}"
 	}
@@ -27,7 +36,7 @@ dep 'bundler', :version do
 	}
 end
 
-dep 'xcode commandline tools', :template => 'external' do
+dep 'xcode commandline install', :template => 'external' do
 	expects %w[cc gcc c++ g++ llvm-gcc llvm-g++ clang] # compilers
 	expects %w[ld libtool] # linkety link
 	expects %w[make] # configure and build tools
@@ -35,12 +44,12 @@ dep 'xcode commandline tools', :template => 'external' do
 	otherwise {
 		log "Install Command Line Tools for Xcode."
 		log "xcode gcc-installer for xos 10.7 at http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg"
-		shell "installer -pkg \"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\" -target /"
+		source "http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg"
+		#shell "installer -pkg \"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\" -target /"
 	}
 end
 
 dep 'rvm', :version do
-	version.default!('1.19.0')
 	met? {
 		"/usr/local/rvm/scripts/rvm".p.file?
 	}
@@ -51,24 +60,33 @@ dep 'rvm', :version do
 end
 
 dep 'ruby', :version do
-	version.default!('2.0.0')
 	met? {
 		in_path? "ruby >= #{version}0p"
 	}
 	meet {
 		log_shell("Make sure latest RVM..","rvm get stable --autolibs=enable")
-		log_shell("Installing ruby..#{version}","echo volder | sudo -S rvm install #{version} ")
+		log_shell("Installing ruby..#{version}","rvm install #{version} ")
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
+	}
+end
+dep 'cmake' do
+	met? {
+		"/usr/local/opt/cmake".p.exists?
+	}
+	meet {
+		log_shell("Installing cmake... by homebrew", "brew install cmake")
 	}
 end
 
 dep 'mysql' , :user do
+	requires 'cmake'
 	user.ask("User to run mysql with").default(shell('whoami'))
 	met? {
 		"/usr/local/var/mysql".p.exists?
+		requires 'mysql root password'
 	}
 	meet {
-		log_shell("Installing MySQL... by homebrew","echo volder | sudo -S brew install mysql")
+		log_shell("Installing MySQL... by homebrew","brew install mysql")
 	}
 end
 
@@ -78,7 +96,7 @@ dep 'mysql root password', :db_admin_password=>"new-password"do
 end
 
 dep 'pow' do
-	requires 'mysql root password'
+	
 end
 
 dep 'myadbox' do
