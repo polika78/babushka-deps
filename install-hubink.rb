@@ -62,7 +62,7 @@ dep 'ruby', :version do
 	}
 end
 
-dep 'mysql' , :version do
+dep 'mysql' , :user do
 	user.ask("User to run mysql with").default(shell('whoami'))
 
 	met? {
