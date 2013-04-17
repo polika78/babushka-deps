@@ -42,7 +42,7 @@ dep 'bundler', :version do
 	}
 end
 
-dep 'xcode commandline install', :template => 'src' do
+dep 'xcode commandline install', :template => 'external' do
 	expects %w[cc gcc c++ g++ llvm-gcc llvm-g++ clang] # compilers
 	expects %w[ld libtool] # linkety link
 	expects %w[make] # configure and build tools
@@ -50,8 +50,8 @@ dep 'xcode commandline install', :template => 'src' do
 	otherwise {
 		log "Install Command Line Tools for Xcode."
 		log "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/xcode461_cltools_10_86938245a.dmg"
-		source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/xcode461_cltools_10_86938245a.dmg"
-		#shell "installer -pkg \"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\" -target /"
+		#source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/xcode461_cltools_10_86938245a.dmg"
+		shell "installer -pkg \"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\" -target /"
 	}
 end
 
