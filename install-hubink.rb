@@ -6,6 +6,7 @@ dep 'install hubink' do
 		'homebrew',
 		'rvm'.with("1.19.0"),
 		'ruby'.with("2.0.0"),
+		'cmake',
 		'mysql',
 		'pow',
 		'myadbox',
@@ -79,7 +80,6 @@ dep 'cmake' do
 end
 
 dep 'mysql' , :user do
-	requires 'cmake'
 	user.ask("User to run mysql with").default(shell('whoami'))
 	met? {
 		"/usr/local/var/mysql".p.exists?
