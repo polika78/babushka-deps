@@ -8,7 +8,6 @@ dep 'install hubink' do
 		'ruby'.with("2.0.0"),
 		'cmake',
 		'mysql',
-		'mysql root password',
 		'pow',
 		'myadbox',
 		'myadserver',
@@ -87,12 +86,9 @@ dep 'mysql' , :user do
 	}
 	meet {
 		log_shell("Installing MySQL... by homebrew","brew install mysql")
+		log_shell("Starting mysql","mysql.server start")
+		log_shell("Setting root password","mysqladmin -u root password 'new-password'")
 	}
-end
-
-dep 'mysql root password', :db_admin_password=>"new-password"do
-  met? { raw_shell("echo '\q' | mysql -u root").stderr["Access denied for user 'root'@'localhost' (using password: NO)"] }
-  meet { mysql(%Q{GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY '#{var :db_admin_password}'}, 'root', false) }
 end
 
 dep 'pow' do
