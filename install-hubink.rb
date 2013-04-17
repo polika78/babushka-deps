@@ -1,6 +1,6 @@
 dep 'install hubink' do
 	requires [
-		'sudo path',
+		'path permission',
 		'bundler'.with("1.3.4"),
 		'xcode commandline install',
 		'homebrew',
@@ -19,12 +19,16 @@ dep 'install hubink' do
 	]
 end
 
-dep 'sudo path' do
+dep 'path permission' do
+	:paths = ["/usr/local","/usr/bin","/Library"]
 	met? {
-		File.writable?("/usr/local")
+		paths do |path|
+			File.writable?(path)
+		end
 	}
 	meet {
-		log_shell("Change permission of /usr/local","echo volder | sudo -S chown -R hubink /usr/local")
+		paths do |path|
+			log_shell("Change permission of #{path}","echo volder | sudo -S chown -R hubink #{path}")
 	}
 end
 
