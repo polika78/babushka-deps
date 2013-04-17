@@ -1,6 +1,6 @@
 dep 'install hubink' do
 	requires [
-		#'sudo path',
+		'sudo path',
 		'bundler'.with("1.3.4"),
 		'xcode commandline install',
 		'homebrew',
