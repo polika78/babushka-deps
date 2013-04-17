@@ -83,7 +83,7 @@ dep 'mysql' , :user do
 	user.ask("User to run mysql with").default(shell('whoami'))
 	met? {
 		"/usr/local/var/mysql".p.exists?
-		requires 'mysql root password'
+		#requires 'mysql root password'
 	}
 	meet {
 		log_shell("Installing MySQL... by homebrew","brew install mysql")
