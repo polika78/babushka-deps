@@ -20,15 +20,16 @@ dep 'install hubink' do
 end
 
 dep 'path permission' do
-	:paths = ["/usr/local","/usr/bin","/Library"]
+	paths = ['/usr/local','/usr/bin','/Library'] 
 	met? {
-		paths do |path|
+		paths.each do |path|
 			File.writable?(path)
 		end
 	}
 	meet {
-		paths do |path|
+		paths.each do |path|
 			log_shell("Change permission of #{path}","echo volder | sudo -S chown -R hubink #{path}")
+		end
 	}
 end
 
@@ -49,7 +50,7 @@ dep 'xcode commandline install', :template => 'external' do
 	otherwise {
 		log "Install Command Line Tools for Xcode."
 		log "xcode gcc-installer for xos 10.7 at http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg"
-		source "http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg"
+		source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/xcode461_cltools_10_86938245a.dmg"
 		#shell "installer -pkg \"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\" -target /"
 	}
 end
@@ -95,10 +96,16 @@ dep 'mysql' do
 end
 
 dep 'pow' do
-	
+	met? {
+		"~/Library/Application\ Support/Pow".p.exists?
+	}
+	meet {
+		log_shell("Installing Pow...","sh -c \"\`curl get.pow.cx\`\"")
+	}
 end
 
 dep 'myadbox' do
+	log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git")
 end
 
 dep 'myadserver' do
