@@ -68,7 +68,7 @@ dep 'mysql' , :user do
 		"/usr/local/var/mysql".p.exists?
 	}
 	meet {
-		log_shell("Installing MySQL... by homebrew","brew install mysql")
+		log_shell("Installing MySQL... by homebrew","echo volder | sudo -S brew install mysql")
 	}
 end
 
