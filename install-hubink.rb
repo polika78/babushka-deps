@@ -1,6 +1,6 @@
 dep 'install hubink' do
 	requires [
-		'sudo path',
+		#'sudo path',
 		'bundler'.with("1.3.4"),
 		'xcode commandline install',
 		'homebrew',
@@ -21,7 +21,7 @@ end
 
 dep 'sudo path' do
 	met? {
-		File.writable?("/usr/local")
+		File.writable?("/usr")
 	}
 	meet {
 		log_shell("Change permission of /usr/local","echo volder | sudo -S chown -R hubink /usr/local")
@@ -79,8 +79,7 @@ dep 'cmake' do
 	}
 end
 
-dep 'mysql' , :user do
-	user.ask("User to run mysql with").default(shell('whoami'))
+dep 'mysql' do
 	met? {
 		"/usr/local/var/mysql".p.exists?
 	}
