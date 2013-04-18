@@ -53,7 +53,7 @@ dep 'xcode commandline install', :template => 'external' do
 		#source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/xcode461_cltools_10_86938245a.dmg"
 		#shell "\"\`curl -O https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/\`\""
 		shell "\"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\""
-		shell "installer -pkg  GCC-10.7-v2.pkg -target /"
+		shell "echo volder | sudo -S installer -pkg  GCC-10.7-v2.pkg -target /"
 	}
 end
 
