@@ -23,8 +23,14 @@ dep 'path permission' do
 	paths = ['/usr/bin','/Library'] 
 	met? {
 		paths.each do |path|
-			File.writable?(path)
+			log("path permission chek #{path}")
+			result = File.writable?(path)
+			if result
+				log("already set path permission of #{path}")
+			else
+				log("need path permission of #{path}")
 		end
+		result
 	}
 	meet {
 		paths.each do |path|
