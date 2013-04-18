@@ -20,7 +20,7 @@ dep 'install hubink' do
 end
 
 dep 'path permission' do
-	paths = ['/usr/local','/usr/bin','/Library'] 
+	paths = ['/usr/bin','/Library'] 
 	met? {
 		paths.each do |path|
 			File.writable?(path)
