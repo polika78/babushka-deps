@@ -89,6 +89,7 @@ dep 'ruby', :version do
 	}
 	meet {
 		log_shell("Make sure latest RVM..","rvm get stable --autolibs=enable")
+		log_shell("RVM Reload","rvm reload")
 		log_shell("Installing ruby..#{version}","rvm install #{version} ")
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
 	}
