@@ -74,7 +74,7 @@ end
 
 dep 'rvm', :version do
 	met? {
-		"/usr/local/rvm/scripts/rvm".p.file?
+		"~/.rvm".p.file?
 	}
 	meet {
 		log_shell("Installing rvm..#{version}","curl -L https://get.rvm.io | bash -s -- --version #{version}")
