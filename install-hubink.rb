@@ -118,6 +118,7 @@ end
 
 dep 'myadbox' do
 	log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git")
+	log_shell("Bundler installing...","bundle install")
 end
 
 dep 'myadserver' do
