@@ -74,7 +74,8 @@ end
 
 dep 'rvm', :version do
 	met? {
-		"~/.rvm".p.exists?
+		#{}"~/.rvm".p.exists?
+		in_path? "rvm >= #{version}"
 	}
 	meet {
 		log_shell("Installing rvm..#{version}","curl -L https://get.rvm.io | bash -s -- --version #{version}")
