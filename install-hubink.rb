@@ -29,6 +29,7 @@ dep 'path permission' do
 				log("already set path permission of #{path}")
 			else
 				log("need path permission of #{path}")
+			end
 		end
 		result
 	}
