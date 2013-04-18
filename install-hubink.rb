@@ -22,9 +22,11 @@ end
 dep 'path permission' do
 	paths = ['/usr/bin','/Library'] 
 	met? {
+		result = false
 		paths.each do |path|
 			log("path permission chek #{path}")
 			result = File.writable?(path)
+			puts result
 			if result
 				log("already set path permission of #{path}")
 			else
