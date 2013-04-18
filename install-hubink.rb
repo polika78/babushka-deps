@@ -1,11 +1,11 @@
 dep 'install hubink' do
 	requires [
-		'path permission',
-		'bundler'.with("1.3.4"),
+		#'path permission',
 		'xcode commandline install',
 		'homebrew',
 		'rvm'.with("1.19.0"),
 		'ruby'.with("2.0.0"),
+		'bundler'.with("1.3.4"),
 		'cmake',
 		'mysql',
 		'pow',
