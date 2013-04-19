@@ -81,7 +81,7 @@ dep 'rvm', :version do
 	}
 	meet {
 		log_shell("Installing rvm..#{version}","curl -L https://get.rvm.io | bash -s -- --version #{version}")
-		log_shell("Reload bash profile..", "sh -c \"\`source ~/.bash_profile\`\"")
+		log_shell("Reload bash profile..", "sh -c \"\`source \~\/\.bash_profile\`\"")
 	}
 end
 
