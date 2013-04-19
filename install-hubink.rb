@@ -160,7 +160,7 @@ dep 'pow start' do
 end
 
 dep 'myadbox start' do
-	log_shell("(cd ~/dev; rake db:create")
+	log_shell("myadbox_db create..","(cd ~/dev && exec rake db:create")
 end
 
 dep 'myadserver' do
