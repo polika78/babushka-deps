@@ -21,25 +21,25 @@ end
 
 dep 'path permission' do
 	paths = ['/usr/local/*']
-	met? {
-		result = false
-		paths.each do |path|
-			log("path permission chek #{path}")
-			result = File.writable?(path)
-			puts result
-			if result
-				log("already set path permission of #{path}")
-			else
-				log("need path permission of #{path}")
-			end
-		end
-		result
-	}
-	meet {
-		paths.each do |path|
-			log_shell("Change permission of #{path}","echo volder | sudo -S chown -R hubink #{path}")
-		end
-	}
+	# met? {
+	# 	result = false
+	# 	paths.each do |path|
+	# 		log("path permission chek #{path}")
+	# 		result = File.writable?(path)
+	# 		puts result
+	# 		if result
+	# 			log("already set path permission of #{path}")
+	# 		else
+	# 			log("need path permission of #{path}")
+	# 		end
+	# 	end
+	# 	result
+	# }
+	# meet {
+	# 	paths.each do |path|
+	log_shell("Change permission of #{path}","echo volder | sudo -S chown -R hubink #{path}")
+	# 	# end
+	# }
 end
 
 dep 'bundler', :version do
