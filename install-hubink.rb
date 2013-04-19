@@ -9,6 +9,7 @@ dep 'install hubink' do
 		'bundler'.with("1.3.4"),
 		'cmake',
 		'mysql',
+		'install sequel pro',
 		'myadbox',
 		'bundle install',
 		'pow',
@@ -125,6 +126,16 @@ dep 'mysql' do
 		log_shell("Installing MySQL... by homebrew","brew install mysql")
 		log_shell("Starting mysql","mysql.server start")
 		log_shell("Setting root password","mysqladmin -u root password 'new-password'")
+	}
+end
+
+dep 'install sequel pro', :template => 'installer'do
+	met? {
+		"/Applications/Sequel\ Pro.app/".p.exists?
+	}
+	meet {
+		log("Installing Sequel Pro..","")
+		source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 	}
 end
 
