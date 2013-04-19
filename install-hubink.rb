@@ -64,8 +64,8 @@ dep 'xcode commandline install', :template => 'installer' do
 	# 	#shell "\"\`curl -O http://cloud.github.com/downloads/kennethreitz/osx-gcc-installer/GCC-10.7-v2.pkg\`\""
 	# 	shell "sudo installer -pkg  DeveloperToolsCLI.pkg -target /"
 	# }
-	met?{
-		met? { which 'llvm-gcc-4.2' }
+	met? { 
+		which 'llvm-gcc-4.2' 
 	}
 	meet {
 		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
