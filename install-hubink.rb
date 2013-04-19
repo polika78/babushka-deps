@@ -136,7 +136,7 @@ dep 'myadbox' do
 end
 
 dep 'bundle install' do
-	shell("sh -c cd \~\/dev")
+	system("cd ~/dev")
 	log_shell("Bundler installing...","bundle install")
 end
 
