@@ -134,7 +134,7 @@ dep 'install sequel pro', :template => 'installer'do
 		"/Applications/Sequel Pro.app/".p.exists?
 	}
 	meet {
-		log("Installing Sequel Pro..","")
+		log("Installing Sequel Pro..")
 		source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 	}
 end
