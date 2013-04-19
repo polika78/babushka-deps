@@ -20,7 +20,7 @@ dep 'install hubink' do
 end
 
 dep 'path permission' do
-	paths = ['/usr/local/*']
+	path = '/usr/local/*'
 	# met? {
 	# 	result = false
 	# 	paths.each do |path|
