@@ -13,6 +13,7 @@ dep 'install hubink' do
 		'bundle install',
 		'pow',
 		'pow start',
+		'myadbox start',
 		'myadserver',
 		'myadscripts',
 		'nodejs',
