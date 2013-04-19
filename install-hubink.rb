@@ -137,12 +137,7 @@ dep 'myadbox' do
 end
 
 dep 'bundle install' do
-	met?{
-		"~/dev/Gemfile".p.exists?
-	}
-	meet {
-		log_shell("Bundler installing...","bundle install")
-	}
+	log_shell("Bundler installing...","bundle install --gemfile=\"\~/dev/Gemfile\"")
 end
 
 dep 'pow' do
