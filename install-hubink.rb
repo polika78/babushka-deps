@@ -1,6 +1,6 @@
 dep 'install hubink' do
 	requires [
-		#'path permission',
+		'path permission',
 		'xcode commandline install',
 		'homebrew',
 		'rvm'.with("1.19.0"),
@@ -20,7 +20,7 @@ dep 'install hubink' do
 end
 
 dep 'path permission' do
-	paths = ['/usr/bin','/Library'] 
+	paths = ['/usr/local']
 	met? {
 		result = false
 		paths.each do |path|
