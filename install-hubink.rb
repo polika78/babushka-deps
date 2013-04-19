@@ -10,6 +10,7 @@ dep 'install hubink' do
 		'cmake',
 		'mysql',
 		'myadbox',
+		'bundle install',
 		'pow',
 		'myadserver',
 		'myadscripts',
@@ -127,13 +128,16 @@ end
 
 dep 'myadbox' do
 	met? {
-		"~/dev/myadbox".p.exists?
+		"~/dev".p.exists?
 	}
 	meet {
-		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev")
-		shell("cd ~/dev")
-		log_shell("Bundler installing...","bundle install")
+		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev/myadbox")
 	}
+end
+
+dep 'bundle install' do
+	shell("cd ~/dev")
+	log_shell("Bundler installing...","bundle install")
 end
 
 dep 'pow' do
