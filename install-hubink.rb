@@ -85,7 +85,7 @@ dep 'rvm', :version do
 
 	}
 end
-dep 'rvm reload' :version do
+dep 'rvm reload', :version do
 	met?{
 		in_path? "rvm >= #{version}"
 	}
