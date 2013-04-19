@@ -153,6 +153,15 @@ dep 'pow' do
 	}
 end
 
+dep 'pow start' do
+	met? {
+		"~/.pow/dev".p.exists?
+	}
+	meet {
+		log_shell("Start myadbox...","ln -s ~/dev ~/.pow/dev")
+	}
+end
+
 dep 'myadbox start' do
 
 end
