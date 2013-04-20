@@ -73,7 +73,8 @@ dep 'xcode commandline install', :template => 'installer' do
 		which 'llvm-gcc-4.2' 
 	}
 	meet {
-		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
+		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI_461.pkg -target /")
+		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
 		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI.pkg -target /")
 		#source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/DeveloperToolsCLI.pkg"
 	}
@@ -95,7 +96,7 @@ dep 'rvm bash', :version do
 	}
 	meet {
 		log("Source bash")
-		system("sh -c \"\`source \~\/Downloads/rvm\`\"")
+		system("sh -c \"\`source \~\/.bash_profile\`\"")
 	}
 end
 
@@ -180,12 +181,24 @@ dep 'myadbox db init' do
 end
 
 dep 'myadserver' do
-end
-
-dep 'nodejs' do
+	met? {
+		"~/dev/myadserver".p.exists?
+	}
+	meet {
+		log_shell("Cloning myadserver...","git clone git@github.com:myadbox/myadserver.git \~\/dev/myadserver")
+	}
 end
 
 dep 'myadscripts' do
+	met? {
+		"~/dev/myadscripts".p.exists?
+	}
+	meet {
+		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/myadscripts.git \~\/dev/myadscripts")
+	}
+end
+
+dep 'nodejs' do
 end
 
 dep 'indesign' do
