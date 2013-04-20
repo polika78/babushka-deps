@@ -95,7 +95,7 @@ dep 'rvm reload', :version do
 	}
 	meet {
 		#log_shell("Reload bash profile..", "sh -c \"\`source \~\/\.bash_profile\`\"")
-		log_shell("Killing Terminal","killall Terminal")
+		log_shell("rvm symlink","sh -c \"\`echo volder | sudo -S ln -s ~/.rvm/scripts/rvm /usr/bin/rvm")
 		log_shell("RVM Reload","rvm reload")
 	}
 end
