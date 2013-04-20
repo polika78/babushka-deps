@@ -135,7 +135,7 @@ dep 'install sequel pro', :template => 'installer'do
 	}
 	meet {
 		log("Installing Sequel Pro..")
-		shell "\"\`curl -O \`http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg\`\`\""
+		shell "curl -O \`http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg\`"
 		shell "hdiutil attach sequel-pro-1.0.1.dmg"
 		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 		shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Applications/')
@@ -144,7 +144,7 @@ end
 
 dep 'myadbox' do
 	met? {
-		"~/dev".p.exists?
+		"~/dev/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev/myadbox")
@@ -152,7 +152,7 @@ dep 'myadbox' do
 end
 
 dep 'bundle install' do
-	log_shell("Bundler installing...","bundle install --gemfile=\"\~/dev/Gemfile\"")
+	log_shell("Bundler installing...","bundle install --gemfile=\"\~/dev/myadbox/Gemfile\"")
 end
 
 dep 'pow' do
@@ -166,10 +166,10 @@ end
 
 dep 'pow start' do
 	met? {
-		"~/.pow/dev".p.exists?
+		"~/.pow/myadbox".p.exists?
 	}
 	meet {
-		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev ~/.pow/dev")
+		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev ~/.pow/myadbox")
 	}
 end
 
