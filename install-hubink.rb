@@ -4,7 +4,7 @@ dep 'install hubink' do
 		'xcode commandline install',
 		'homebrew',
 		'rvm'.with("1.19.0"),
-		'rvm'.with("1.19.0"),
+		'rvm reload',
 		'ruby'.with("2.0.0"),
 		'bundler'.with("1.3.4"),
 		'cmake',
@@ -81,14 +81,14 @@ end
 
 dep 'rvm', :version do
 	met? {
-		#{}"~/.rvm".p.exists?
-		in_path? "rvm >= #{version}"
+		"~/.rvm".p.exists?
 	}
 	meet {
 		log_shell("Installing rvm..#{version}","curl -L https://get.rvm.io | bash -s -- --version #{version}")
 
 	}
 end
+
 dep 'rvm reload', :version do
 	met?{
 		in_path? "rvm >= #{version}"
