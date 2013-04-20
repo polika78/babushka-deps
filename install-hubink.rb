@@ -133,11 +133,13 @@ dep 'install sequel pro', :template => 'installer'do
 	met? {
 		"/Applications/Sequel Pro.app/".p.exists?
 	}
-	log("Installing Sequel Pro..")
-	shell "\"\`curl -O http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg\`\""
-	shell "hdiutil attach sequel-pro-1.0.1.dmg"
-	#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
-	shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Applications/')
+	meet {
+		log("Installing Sequel Pro..")
+		shell "\"\`curl -O \`http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg\`\`\""
+		shell "hdiutil attach sequel-pro-1.0.1.dmg"
+		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
+		shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Applications/')
+	}
 end
 
 dep 'myadbox' do
