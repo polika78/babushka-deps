@@ -4,7 +4,7 @@ dep 'install hubink' do
 		'xcode commandline install',
 		'homebrew',
 		'rvm'.with("1.19.0"),
-		'rvm reload'.with("1.19.0"),
+		'rvm bash'.with("1.19.0"),
 		'ruby'.with("2.0.0"),
 		'bundler'.with("1.3.4"),
 		'cmake',
@@ -89,14 +89,13 @@ dep 'rvm', :version do
 	}
 end
 
-dep 'rvm reload', :version do
+dep 'rvm bash', :version do
 	met?{
 		in_path? "rvm >= #{version}"
 	}
 	meet {
 		log("Source bash")
 		exec("sh -c \"\`source \~\/\.bash_profile\`\"")
-		log_shell("RVM Reload","rvm reload")
 	}
 end
 
@@ -105,6 +104,7 @@ dep 'ruby', :version do
 		in_path? "ruby >= #{version}0p"
 	}
 	meet {
+		log_shell("RVM Reload","rvm reload")
 		log_shell("Make sure latest RVM..","rvm get stable --autolibs=enable")
 		log_shell("Installing ruby..#{version}","rvm install #{version} ")
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
