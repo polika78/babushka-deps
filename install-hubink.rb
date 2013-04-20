@@ -158,7 +158,7 @@ dep 'pow' do
 		"~/Library/Application Support/Pow".p.exists?
 	}
 	meet {
-		log_shell("Installing Pow...","sh -c \"\`curl get.pow.cx\`\"")
+		log_shell("Installing Pow...","sh -c \"\`echo volder | sudo -S curl \`get.pow.cx\`\`\"")
 	}
 end
 
@@ -167,7 +167,7 @@ dep 'pow start' do
 		"~/.pow/dev".p.exists?
 	}
 	meet {
-		log_shell("Start myadbox...","ln -s ~/dev ~/.pow/dev")
+		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev ~/.pow/dev")
 	}
 end
 
