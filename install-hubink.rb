@@ -95,7 +95,7 @@ dep 'rvm bash', :version do
 	}
 	meet {
 		log("Source bash")
-		exec("sh -c \"\`source \~\/\.bash_profile\`\"")
+		system("sh -c \"\`source \~\/Downloads/rvm\`\"")
 	}
 end
 
@@ -135,7 +135,7 @@ dep 'install sequel pro', :template => 'installer'do
 	}
 	log("Installing Sequel Pro..")
 	source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
-	shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Application/')
+	shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Applications/')
 end
 
 dep 'myadbox' do
