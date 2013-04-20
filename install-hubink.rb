@@ -129,7 +129,7 @@ dep 'mysql' do
 	}
 end
 
-dep 'install sequel pro', :template => 'installer'do
+dep 'install sequel pro' do
 	met? {
 		'/Applications/Sequel\ Pro.app/'.p.exists?
 	}
