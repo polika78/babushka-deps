@@ -14,7 +14,7 @@ dep 'install hubink' do
 		'bundle install',
 		'pow',
 		'pow start',
-		'myadbox start',
+		'myadbox db init',
 		'myadserver',
 		'myadscripts',
 		'nodejs',
@@ -139,6 +139,7 @@ dep 'install sequel pro' do
 		shell "hdiutil attach sequel-pro-1.0.1.dmg"
 		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 		shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Applications/')
+		shell 'hdiutil detach /Volumes/Sequel\ Pro\ 1.0.1/'
 	}
 end
 
