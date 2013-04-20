@@ -135,7 +135,7 @@ dep 'install sequel pro', :template => 'installer'do
 	}
 	log("Installing Sequel Pro..")
 	source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
-	shell("echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Application/")
+	shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Application/')
 end
 
 dep 'myadbox' do
@@ -153,7 +153,7 @@ end
 
 dep 'pow' do
 	met? {
-		"~/Library/Application\ Support/Pow".p.exists?
+		'~/Library/Application\ Support/Pow'.p.exists?
 	}
 	meet {
 		log_shell("Installing Pow...","sh -c \"\`curl get.pow.cx\`\"")
