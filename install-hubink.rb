@@ -94,8 +94,7 @@ dep 'rvm reload', :version do
 		in_path? "rvm >= #{version}"
 	}
 	meet {
-		#log_shell("Reload bash profile..", "sh -c \"\`source \~\/\.bash_profile\`\"")
-		log_shell("rvm symlink","echo volder | sudo -S ln -s ~/.rvm/scripts/rvm /usr/bin/rvm")
+		exec("sh -c \"\`source \~\/\.bash_profile\`\"")
 		log_shell("RVM Reload","rvm reload")
 	}
 end
