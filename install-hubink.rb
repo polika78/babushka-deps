@@ -170,7 +170,7 @@ dep 'pow start' do
 		"~/.pow/myadbox".p.exists?
 	}
 	meet {
-		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev ~/.pow/myadbox")
+		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev/myadbox ~/.pow/myadbox")
 	}
 end
 
