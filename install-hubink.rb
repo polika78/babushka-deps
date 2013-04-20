@@ -94,6 +94,7 @@ dep 'rvm reload', :version do
 		in_path? "rvm >= #{version}"
 	}
 	meet {
+		log("Source bash")
 		exec("sh -c \"\`source \~\/\.bash_profile\`\"")
 		log_shell("RVM Reload","rvm reload")
 	}
