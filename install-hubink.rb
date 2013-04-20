@@ -4,7 +4,7 @@ dep 'install hubink' do
 		'xcode commandline install',
 		'homebrew',
 		'rvm'.with("1.19.0"),
-		'rvm reload'.("1.19.0"),
+		'rvm reload'.with("1.19.0"),
 		'ruby'.with("2.0.0"),
 		'bundler'.with("1.3.4"),
 		'cmake',
