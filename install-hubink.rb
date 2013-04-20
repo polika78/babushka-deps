@@ -170,7 +170,7 @@ dep 'pow start' do
 end
 
 dep 'myadbox db init' do
-	log_shell("myadbox_db create..","(cd ~/dev && exec rake db:create)")
+	log_shell("myadbox_db create..","(cd ~/dev && exec rake db:setup)")
 	log_shell("myadbox_db migrate..","(cd ~/dev && exec rake db:migrate)")
 end
 
