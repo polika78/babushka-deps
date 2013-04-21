@@ -203,12 +203,12 @@ dep 'nodejs', :version do
 		in_path? "node >= #{version}"
 	}
 	meet {
-		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/node-v0.4.10.pkg -target /")
+		log_shell("Install nodejs","echo volder | sudo -S installer -pkg  ~/Downloads/node-v0.10.4.pkg -target /")
 	}
 end
 
 dep 'coffee-script', :version do
-		met?{
+	met?{
 		in_path? "coffee >= #{version}"
 	}
 	meet {
@@ -216,7 +216,19 @@ dep 'coffee-script', :version do
 	}
 end
 
+dep 'sikuli' do
+	met? {
+		'/Applications/Sikuli-IDE.app'.p.exists?
+	}
+	meet {
+		log_shell("Install Sikuli","echo volder | sudo -S installer -pkg  ~/Downloads/node-v0.4.10.pkg -target /")
+	}
+end
+
 dep 'indesign' do
+	met?{
+		'/Applications/'
+	}
 end
 
 dep 'dropbox' do
