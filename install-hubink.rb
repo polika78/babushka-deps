@@ -19,6 +19,7 @@ dep 'install hubink' do
 		'myadscripts',
 		'nodejs'.with("v0.10.4"),
 		'coffee-script'.with("1.6.2"),
+		'sikuli',
 		'indesign',
 		'apache-MAMP',
 		'dropbox'
@@ -213,6 +214,7 @@ dep 'coffee-script', :version do
 	}
 	meet {
 		log_shell("coffee scripts installing...","echo volder | sudo npm install -g coffee-script")
+		log_shell("build script files in myadscripts...","(cd ~/dev/myadscripts && exec rake build)"))
 	}
 end
 
@@ -221,13 +223,22 @@ dep 'sikuli' do
 		'/Applications/Sikuli-IDE.app'.p.exists?
 	}
 	meet {
-		log_shell("Install Sikuli","echo volder | sudo -S installer -pkg  ~/Downloads/node-v0.4.10.pkg -target /")
+		log("sikuli installing")
+		shell('echo volder | sudo -S cp -Rfp ~/Downloads/Sikuli-IDE.app /Applications/')
 	}
 end
 
 dep 'indesign' do
 	met?{
-		'/Applications/'
+		'/Applications/Adobe\ InDesign\ CS6\ Server/'.p.exists?
+	}
+	meet {
+		log("Installing Indesign Server..")
+		shell 'hdiutil attach ~/Downloads/InDesignServer_8_LS18.dmg'
+		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
+		shell 'open -a /Volumes/Adobe\ InDesign\ CS6\ Server/Adobe\ InDesign\ CS6\ Server/Install.app'
+		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Downloads/Indesign-Install.sikul'
+		shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
 	}
 end
 
@@ -235,4 +246,21 @@ dep 'dropbox' do
 end
 
 dep 'apache-MAMP' do
+	met? {
+		'/Applications/MAMP/'.p.exists?
+	}
+	meet {
+		log_shell("Install nodejs","echo volder | sudo -S installer -pkg  ~/Downloads/MAMP_2.1.4.pkg -target /")
+	}
 end
+
+dep 'apache-MAMP start' do
+	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|
+		httpdconf = f.read
+		f.write(httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents"))
+		f.close
+	end
+	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
+end
+
+
