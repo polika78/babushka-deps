@@ -214,7 +214,7 @@ dep 'coffee-script', :version do
 	}
 	meet {
 		log_shell("coffee scripts installing...","echo volder | sudo npm install -g coffee-script")
-		log_shell("build script files in myadscripts...","(cd ~/dev/myadscripts && exec rake build)"))
+		log_shell("build script files in myadscripts...","(cd ~/dev/myadscripts && exec rake build)")
 	}
 end
 
@@ -256,7 +256,7 @@ end
 
 dep 'apache-MAMP start' do
 	httpdconf = File.read("/Applications/MAMP/conf/apache/httpd.conf")
-	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|	
+	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|
 		f.write(httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents"))
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
