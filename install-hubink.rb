@@ -73,7 +73,7 @@ dep 'xcode commandline install', :template => 'installer' do
 		which 'llvm-gcc-4.2' 
 	}
 	meet {
-		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI_461.pkg -target /")
+		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI.pkg -target /")
 		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
 		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI.pkg -target /")
 		#source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/DeveloperToolsCLI.pkg"
