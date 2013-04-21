@@ -162,7 +162,7 @@ dep 'pow' do
 		"~/Library/Application Support/Pow".p.exists?
 	}
 	meet {
-		log_shell("Installing Pow...","sh -c \"\`echo volder | sudo -S curl \`get.pow.cx\`\`\"")
+		log_shell("Installing Pow...","sh -c \"\`echo volder | sudo -S curl "get.pow.cx"\`\"")
 	}
 end
 
