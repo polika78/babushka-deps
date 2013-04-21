@@ -217,6 +217,14 @@ dep 'coffee-script', :version do
 		log_shell("build script files in myadscripts...","(cd ~/dev/myadscripts && exec rake build)")
 	}
 end
+dep 'java se' do
+	met? {
+		in_path{"java >= 1.6.0_45"}
+	}
+	meet {
+		log_shell("Install java se..",'echo volder | sudo -S installer -pkg  ~/Downloads/Java\ 7\ Update\ 21.pkg -target /')
+	}
+end
 
 dep 'sikuli' do
 	met? {
@@ -238,7 +246,7 @@ dep 'indesign' do
 		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 		shell 'open -a /Volumes/Adobe\ InDesign\ CS6\ Server/Adobe\ InDesign\ CS6\ Server/Install.app'
 		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Downloads/Indesign-Install.sikul'
-		shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
+		#shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
 	}
 end
 
