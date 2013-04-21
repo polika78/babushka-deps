@@ -220,7 +220,7 @@ dep 'coffee-script', :version do
 end
 dep 'java se' do
 	met? {
-		in_path "java >= 1.6.0_45"
+		in_path? "java >= 1.6.0_45"
 	}
 	meet {
 		log_shell("Install java se..",'echo volder | sudo -S installer -pkg  ~/Downloads/Java\ 7\ Update\ 21.pkg -target /')
