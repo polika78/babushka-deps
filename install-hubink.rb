@@ -255,10 +255,9 @@ dep 'apache-MAMP' do
 end
 
 dep 'apache-MAMP start' do
-	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|
-		httpdconf = f.read
+	httpdconf = File.read("/Applications/MAMP/conf/apache/httpd.conf")
+	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|	
 		f.write(httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents"))
-		f.close
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
 end
