@@ -19,6 +19,7 @@ dep 'install hubink' do
 		'myadscripts',
 		'nodejs'.with("v0.10.4"),
 		'coffee-script'.with("1.6.2"),
+		'java se',
 		'sikuli',
 		'indesign',
 		'apache-MAMP',
