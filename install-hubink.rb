@@ -178,6 +178,7 @@ dep 'pow start' do
 end
 
 dep 'myadbox db init' do
+	log_shell("Starting mysql","mysql.server start")
 	log_shell("myadbox_db create..","(cd ~/dev/myadbox && exec rake db:setup)")
 	log_shell("myadbox_db migrate..","(cd ~/dev/myadbox && exec rake db:migrate)")
 end
@@ -244,7 +245,6 @@ dep 'indesign' do
 	meet {
 		log("Installing Indesign Server..")
 		shell 'hdiutil attach ~/Downloads/InDesignServer_8_LS18.dmg'
-		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 		shell 'open -a /Volumes/Adobe\ InDesign\ CS6\ Server/Adobe\ InDesign\ CS6\ Server/Install.app'
 		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Downloads/Indesign-Install.sikul'
 		#shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
@@ -252,6 +252,13 @@ dep 'indesign' do
 end
 
 dep 'dropbox' do
+	met? {
+		'/Applications/Dropbox.app'.p.exists?
+	}
+	meet {
+		log("sikuli installing")
+		shell('echo volder | sudo -S cp -Rfp ~/Downloads/Dropbox.app /Applications/')
+	}
 end
 
 dep 'apache-MAMP' do
