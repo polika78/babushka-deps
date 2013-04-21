@@ -228,12 +228,13 @@ dep 'java se' do
 	}
 end
 
-dep 'sikuli' do
+dep 'sikuli', :template => 'installer' do
 	met? {
 		'/Applications/Sikuli-IDE.app'.p.exists?
 	}
 	meet {
 		log("sikuli installing")
+		#source("~/Downloads/sikuli-r930-osx.10.6.dmg")
 		shell('echo volder | sudo -S cp -Rfp ~/Downloads/Sikuli-IDE.app /Applications/')
 	}
 end
