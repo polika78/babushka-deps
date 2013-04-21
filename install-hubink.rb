@@ -223,7 +223,7 @@ dep 'java se' do
 		"/Library/Java/Home".p.exists?
 	}
 	meet {
-		log_shell("Install java se..",'echo volder | sudo -S installer -pkg  ~/Downloads/Java\ 7\ Update\ 21.pkg -target /')
+		log_shell("Install java se..",'echo volder | sudo -S installer -pkg  ~/Downloads/JavaForOSX.pkg -target /')
 	}
 end
 
