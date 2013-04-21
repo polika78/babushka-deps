@@ -17,7 +17,8 @@ dep 'install hubink' do
 		'myadbox db init',
 		'myadserver',
 		'myadscripts',
-		'nodejs',
+		'nodejs'.with("v0.10.4"),
+		'coffee-script'.with("1.6.2"),
 		'indesign',
 		'apache-MAMP',
 		'dropbox'
@@ -73,9 +74,8 @@ dep 'xcode commandline install', :template => 'installer' do
 		which 'llvm-gcc-4.2' 
 	}
 	meet {
-		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI.pkg -target /")
-		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
 		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI.pkg -target /")
+		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
 		#source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/DeveloperToolsCLI.pkg"
 	}
 end
@@ -198,7 +198,22 @@ dep 'myadscripts' do
 	}
 end
 
-dep 'nodejs' do
+dep 'nodejs', :version do
+	met?{
+		in_path? "node >= #{version}"
+	}
+	meet {
+		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/node-v0.4.10.pkg -target /")
+	}
+end
+
+dep 'coffee-script', :version do
+		met?{
+		in_path? "coffee >= #{version}"
+	}
+	meet {
+		log_shell("coffee scripts installing...","echo volder | sudo npm install -g coffee-script")
+	}
 end
 
 dep 'indesign' do
