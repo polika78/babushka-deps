@@ -140,7 +140,7 @@ end
 
 dep 'install sequel pro' do
 	met? {
-		"/Applications/Sequel\ Pro.app".p.exists?
+		'/Applications/Sequel\ Pro.app'.p.exists?
 	}
 	meet {
 		log("Installing Sequel Pro..")
@@ -217,7 +217,10 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
+	if File.exists? "~/dev/myadbox/db/base.sql"
+		log("base.sql file exists..")
+	else
+		log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
 	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development > base.sql)")
 end
 
@@ -265,7 +268,7 @@ end
 
 dep 'indesign' do
 	met?{
-		'/Applications/Adobe\ InDesign\ CS6\ Server/'.p.exists?
+		'/Applications/Adobe\ InDesign\ CS6\ Server/InDesignServer'.p.exists?
 	}
 	meet {
 		log("Installing Indesign Server..")
@@ -309,7 +312,7 @@ dep 'apache-MAMP' do
 		'/Applications/MAMP/'.p.exists?
 	}
 	meet {
-		log_shell("Install nodejs","echo volder | sudo -S installer -pkg  ~/Downloads/MAMP_2.1.4.pkg -target /")
+		log_shell("Install MAMP","echo volder | sudo -S installer -pkg  ~/Downloads/MAMP_2.1.4.pkg -target /")
 	}
 end
 
