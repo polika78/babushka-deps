@@ -325,7 +325,7 @@ dep 'apache-MAMP start' do
 		f.close
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
-	if File.exists? "/Library/WebServer/Documents/vw" && 
+	if File.exists? "/Library/WebServer/Documents/vw"
 		log("Already exists Symlink of /Libray/WebServer/Documents")
 	else
 		log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/myadbox /Library/WebServer/Documents/vw")
