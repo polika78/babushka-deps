@@ -221,7 +221,7 @@ dep 'myadbox db import' do
 		log("base.sql file exists..")
 		log_shell("delete base.sql..","echo volder|sudo -S rm -rf ~/dev/myadbox/db/base.sql")
 	end
-	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
+	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gunzip -c base.sql.gz > base.sql)")
 	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development < base.sql)")
 end
 
@@ -324,7 +324,11 @@ dep 'apache-MAMP start' do
 		f.close
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
-	log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/Myadbox/myadbox /Library/WebServer/Documents/vw")
+	if File.exists? "/Library/WebServer/Documents/vw"
+		log("Already exists Symlink of /Libray/WebServer/Documents")
+	else
+		log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/myadbox /Library/WebServer/Documents/vw")
+	end
 end
 
 dep 'indesign server start' do
