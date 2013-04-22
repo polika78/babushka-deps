@@ -219,9 +219,9 @@ end
 dep 'myadbox db import' do
 	if File.exists? "Users/hubink/dev/myadbox/db/base.sql"
 		log("base.sql file exists..")
-	else
-		log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
+		log_shell("delete base.sql..","echo volder|sudo -S rm -rf ~/dev/myadbox/db/base.sql")
 	end
+	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
 	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development > base.sql)")
 end
 
