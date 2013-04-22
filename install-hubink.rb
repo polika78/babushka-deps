@@ -154,7 +154,7 @@ end
 
 dep 'clone myadbox' do
 	met? {
-		"Users/hubink/dev/myadbox".p.exists?
+		"/Users/hubink/dev/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev/myadbox")
@@ -163,7 +163,7 @@ end
 
 dep 'clone myadserver' do
 	met? {
-		"Users/hubink/dev/myadserver".p.exists?
+		"/Users/hubink/dev/myadserver".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadserver...","git clone git@github.com:myadbox/myadserver.git \~\/dev/myadserver")
@@ -172,7 +172,7 @@ end
 
 dep 'clone myadscripts' do
 	met? {
-		"Users/hubink/dev/myadscripts".p.exists?
+		"/Users/hubink/dev/myadscripts".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/myadscripts.git \~\/dev/myadscripts")
