@@ -24,10 +24,10 @@ dep 'install hubink' do
 		'java se',
 		#'sikuli',
 		#'indesign',
-		'indesign server start',
+		#'dropbox',
 		'apache-MAMP',
 		'apache-MAMP start',
-		'dropbox'
+		'indesign server start'
 	]
 end
 
@@ -275,10 +275,6 @@ dep 'indesign' do
 	}
 end
 
-dep 'indesign server start' do
-	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer'
-end
-
 dep 'dropbox' do
 	met? {
 		'/Applications/Dropbox.app'.p.exists?
@@ -305,6 +301,10 @@ dep 'apache-MAMP start' do
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
 	log_shell("Linking Dcument fold","ln -s ~/Dropbox/Myadbox/myadbox /Library/WebServer/Documents/vw")
+end
+
+dep 'indesign server start' do
+	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer'
 end
 
 
