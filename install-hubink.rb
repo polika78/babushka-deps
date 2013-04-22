@@ -24,7 +24,9 @@ dep 'install hubink' do
 		'java se',
 		#'sikuli',
 		#'indesign',
+		'indesign server start',
 		'apache-MAMP',
+		'apache-MAMP start'
 		'dropbox'
 	]
 end
@@ -181,7 +183,7 @@ dep 'clone indesign' do
 		"~/dev/indesign".p.exists?
 	}
 	meet {
-		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/indesign.git \~\/dev/indesign")
+		log_shell("Cloning indesign...","git clone git@github.com:myadbox/indesign.git \~\/dev/indesign")
 	}
 end
 
@@ -271,6 +273,10 @@ dep 'indesign' do
 		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Downloads/Indesign-Install.sikul'
 		#shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
 	}
+end
+
+dep 'indesign server start' do
+	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer'
 end
 
 dep 'dropbox' do
