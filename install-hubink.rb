@@ -112,6 +112,7 @@ dep 'ruby', :version do
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
 	}
 end
+
 dep 'cmake' do
 	met? {
 		"/usr/local/opt/cmake".p.exists?
@@ -178,7 +179,7 @@ dep 'pow start' do
 end
 
 dep 'myadbox db init' do
-	log_shell("Starting mysql","mysql.server start")
+	log_shell("Starting mysql..","mysql.server start")
 	log_shell("myadbox_db create..","(cd ~/dev/myadbox && exec rake db:setup)")
 	log_shell("myadbox_db migrate..","(cd ~/dev/myadbox && exec rake db:migrate)")
 end
