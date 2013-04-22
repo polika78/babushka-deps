@@ -24,8 +24,8 @@ dep 'install hubink' do
 		'myadscripts build',
 		'java se',
 		#'sikuli',
-		#'indesign',
-		#'dropbox',
+		'indesign',
+		'dropbox',
 		'apache-MAMP',
 		'apache-MAMP start',
 		'indesign server start'
