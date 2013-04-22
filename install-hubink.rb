@@ -280,7 +280,7 @@ dep 'indesign' do
 		count = 0
 		while File.exists? "/tmp/installing_indesign"
 			count = count + 1
-			if(count%40 == 0)
+			if(count%10000 == 0)
 				log(".")
 			end
 		end
