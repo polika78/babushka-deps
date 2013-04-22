@@ -217,7 +217,7 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	if "~/dev/myadbox/db/base.sql".p.exists?
+	if File.exists? "~/dev/myadbox/db/base.sql"
 		log("base.sql file exists..")
 	else
 		log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
