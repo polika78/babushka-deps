@@ -18,6 +18,7 @@ dep 'install hubink' do
 		'pow',
 		'pow start',
 		'myadbox db init',
+		'myadbox db import',
 		'nodejs'.with("v0.10.4"),
 		'coffee-script'.with("1.6.2"),
 		'myadscripts build',
@@ -81,7 +82,7 @@ dep 'xcode commandline install', :template => 'installer' do
 	}
 	meet {
 		#log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/DeveloperToolsCLI.pkg -target /")
-		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Downloads/GCC-10.7-v2.pkg -target /")
+		log_shell("Install xcode","echo volder | sudo -S installer -pkg  ~/Setup_package/GCC-10.7-v2.pkg -target /")
 		#source "https://s3-ap-southeast-2.amazonaws.com/myadbox-resources/DeveloperToolsCLI.pkg"
 	}
 end
@@ -225,7 +226,7 @@ dep 'nodejs', :version do
 		in_path? "node >= #{version}"
 	}
 	meet {
-		log_shell("Install nodejs","echo volder | sudo -S installer -pkg  ~/Downloads/node-v0.10.4.pkg -target /")
+		log_shell("Install nodejs","echo volder | sudo -S installer -pkg  ~/Setup_package/node-v0.10.4.pkg -target /")
 	}
 end
 
@@ -247,7 +248,7 @@ dep 'java se' do
 		"/Library/Java/Home".p.exists?
 	}
 	meet {
-		log_shell("Install java se..",'echo volder | sudo -S installer -pkg  ~/Downloads/JavaForOSX.pkg -target /')
+		log_shell("Install java se..",'echo volder | sudo -S installer -pkg  ~/Setup_package/JavaForOSX.pkg -target /')
 	}
 end
 
@@ -258,7 +259,7 @@ dep 'sikuli', :template => 'installer' do
 	meet {
 		log("sikuli installing")
 		#source("~/Downloads/sikuli-r930-osx.10.6.dmg")
-		shell('echo volder | sudo -S cp -Rfp ~/Downloads/Sikuli-IDE.app /Applications/')
+		shell('echo volder | sudo -S cp -Rfp ~/Setup_package/Sikuli-IDE.app /Applications/')
 	}
 end
 
@@ -268,10 +269,18 @@ dep 'indesign' do
 	}
 	meet {
 		log("Installing Indesign Server..")
-		shell 'hdiutil attach ~/Downloads/InDesignServer_8_LS18.dmg'
+		shell 'hdiutil attach ~/Setup_package/InDesignServer_8_LS18.dmg'
 		shell 'open -a /Volumes/Adobe\ InDesign\ CS6\ Server/Adobe\ InDesign\ CS6\ Server/Install.app'
-		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Downloads/Indesign-Install.sikul'
-		#shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
+		shell 'touch /tmp/installing_indesign'
+		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Setup_package/Indesign-Install.sikul'
+		count = 0
+		while File.exists? "/tmp/installing_indesign"
+			count = count + 1
+			if(count%40 == 0)
+				log(".")
+			end
+		end
+		shell 'hdiutil detach /Volumes/Adobe\ InDesign\ CS6\ Server'
 	}
 end
 
@@ -280,8 +289,18 @@ dep 'dropbox' do
 		'/Applications/Dropbox.app'.p.exists?
 	}
 	meet {
-		log("sikuli installing")
-		shell('echo volder | sudo -S cp -Rfp ~/Downloads/Dropbox.app /Applications/')
+		log("Dropbox installing")
+		shell 'touch /tmp/installing_dropbox'
+		shell('echo volder | sudo -S cp -Rfp ~/Setup_package/Dropbox.app /Applications/')
+		shell 'open -a /Applications//Dropbox.app'
+		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Setup_package/Dropbox-Install.sikul'
+		count = 0
+		while File.exists? "/tmp/installing_dropbox"
+			count = count + 1
+			if(count%40 == 0)
+				log(".")
+			end
+		end
 	}
 end
 
