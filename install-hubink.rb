@@ -24,8 +24,8 @@ dep 'install hubink' do
 		'myadscripts build',
 		'java se',
 		#'sikuli',
-		'indesign',
-		'dropbox',
+		#'indesign',
+		#'dropbox',
 		'apache-MAMP',
 		'apache-MAMP start',
 		'indesign server start'
@@ -189,7 +189,7 @@ dep 'clone indesign' do
 end
 
 dep 'bundle install' do
-	log_shell("Bundler installing...","(cd ~/dev/myadscripts && exec bundle install)")
+	log_shell("Bundler installing...","(cd ~/dev/myadbox && exec bundle install)")
 end
 
 dep 'pow' do
@@ -323,7 +323,7 @@ dep 'apache-MAMP start' do
 end
 
 dep 'indesign server start' do
-	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer'
+	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
 end
 
 
