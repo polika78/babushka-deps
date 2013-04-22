@@ -189,7 +189,7 @@ dep 'clone indesign' do
 end
 
 dep 'bundle install' do
-	log_shell("Bundler installing...","bundle install --gemfile=\"\~/dev/myadbox/Gemfile\"")
+	log_shell("Bundler installing...","(cd ~/dev/myadscripts && exec bundle install)")
 end
 
 dep 'pow' do
@@ -217,7 +217,7 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz")
+	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
 	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development > base.sql)")
 end
 
