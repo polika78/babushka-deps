@@ -213,7 +213,6 @@ end
 dep 'myadbox db init' do
 	log_shell("Starting mysql..","mysql.server start")
 	log_shell("myadbox_db create..","(cd ~/dev/myadbox && exec rake db:setup)")
-	log_shell("myadbox_db migrate..","(cd ~/dev/myadbox && exec rake db:migrate)")
 end
 
 dep 'myadbox db import' do
@@ -223,6 +222,7 @@ dep 'myadbox db import' do
 	end
 	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gunzip -c base.sql.gz > base.sql)")
 	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development < base.sql)")
+	log_shell("myadbox_db migrate..","(cd ~/dev/myadbox && exec rake db:migrate)")
 end
 
 dep 'nodejs', :version do
@@ -333,6 +333,11 @@ dep 'apache-MAMP start' do
 end
 
 dep 'indesign server start' do
+	config = File.read("/Users/hubink/dev/myadbox/config/config.yml")
+	File.open("/Users/hubink/dev/myadbox/config/config.yml",'w') do |f|
+		f.write(config.gsub("/Volumes/Hubink/myadscripts/build/indesign/server","/Users/hubink/dev/myadscripts/build/indesign/server"))
+		f.close
+	end
 	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
 end
 
