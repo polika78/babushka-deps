@@ -320,7 +320,8 @@ end
 dep 'apache-MAMP start' do
 	httpdconf = File.read("/Applications/MAMP/conf/apache/httpd.conf")
 	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|
-		f.write(httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents"))
+		httpdconf = httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents")
+		f.write(httpdconf.gsub("severin","hubink"))
 		f.close
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
