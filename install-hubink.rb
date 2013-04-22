@@ -19,6 +19,7 @@ dep 'install hubink' do
 		'myadscripts',
 		'nodejs'.with("v0.10.4"),
 		'coffee-script'.with("1.6.2"),
+		'myadscripts build',
 		'java se',
 		'sikuli',
 		'indesign',
@@ -217,9 +218,13 @@ dep 'coffee-script', :version do
 	}
 	meet {
 		log_shell("coffee scripts installing...","echo volder | sudo npm install -g coffee-script")
-		log_shell("build script files in myadscripts...","(cd ~/dev/myadscripts && exec rake build)")
 	}
 end
+
+dep 'myadscripts build' do
+	log_shell("myadscripts build script files in myadscripts...","(cd ~/dev/myadscripts && exec rake build)")
+end
+
 dep 'java se' do
 	met? {
 		"/Library/Java/Home".p.exists?
