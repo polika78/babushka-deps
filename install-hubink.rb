@@ -217,7 +217,7 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	if File.exists? "~/dev/myadbox/db/base.sql"
+	if "~/dev/myadbox/db/base.sql".p.exists?
 		log("base.sql file exists..")
 	else
 		log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
@@ -312,7 +312,7 @@ dep 'apache-MAMP' do
 		'/Applications/MAMP/'.p.exists?
 	}
 	meet {
-		log_shell("Install MAMP","echo volder | sudo -S installer -pkg  ~/Downloads/MAMP_2.1.4.pkg -target /")
+		log_shell("Install MAMP","echo volder | sudo -S installer -pkg  ~/Setup_package/MAMP_2.1.4.pkg -target /")
 	}
 end
 
