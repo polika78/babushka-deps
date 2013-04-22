@@ -140,7 +140,7 @@ end
 
 dep 'install sequel pro' do
 	met? {
-		'/Applications/Sequel\ Pro.app'.p.exists?
+		"/Applications/Sequel\ Pro.app".p.exists?
 	}
 	meet {
 		log("Installing Sequel Pro..")
