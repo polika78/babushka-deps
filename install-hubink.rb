@@ -26,7 +26,7 @@ dep 'install hubink' do
 		#'indesign',
 		'indesign server start',
 		'apache-MAMP',
-		'apache-MAMP start'
+		'apache-MAMP start',
 		'dropbox'
 	]
 end
@@ -304,6 +304,7 @@ dep 'apache-MAMP start' do
 		f.write(httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents"))
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
+	log_shell("Linking Dcument fold","ln -s ~/Dropbox/Myadbox/myadbox /Library/WebServer/Documents/vw")
 end
 
 
