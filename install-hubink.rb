@@ -221,6 +221,7 @@ dep 'myadbox db import' do
 		log("base.sql file exists..")
 	else
 		log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
+	end
 	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development > base.sql)")
 end
 
