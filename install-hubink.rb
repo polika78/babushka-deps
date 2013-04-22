@@ -154,7 +154,7 @@ end
 
 dep 'clone myadbox' do
 	met? {
-		"~/dev/myadbox".p.exists?
+		"Users/hubink/dev/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev/myadbox")
@@ -163,7 +163,7 @@ end
 
 dep 'clone myadserver' do
 	met? {
-		"~/dev/myadserver".p.exists?
+		"Users/hubink/dev/myadserver".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadserver...","git clone git@github.com:myadbox/myadserver.git \~\/dev/myadserver")
@@ -172,7 +172,7 @@ end
 
 dep 'clone myadscripts' do
 	met? {
-		"~/dev/myadscripts".p.exists?
+		"Users/hubink/dev/myadscripts".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/myadscripts.git \~\/dev/myadscripts")
@@ -181,7 +181,7 @@ end
 
 dep 'clone indesign' do
 	met? {
-		"~/dev/indesign".p.exists?
+		"/Users/hubink/dev/indesign".p.exists?
 	}
 	meet {
 		log_shell("Cloning indesign...","git clone git@github.com:myadbox/indesign.git \~\/dev/indesign")
@@ -194,7 +194,7 @@ end
 
 dep 'pow' do
 	met? {
-		"~/Library/Application Support/Pow".p.exists?
+		"/Users/hubink/Library/Application Support/Pow".p.exists?
 	}
 	meet {
 		log_shell("Installing Pow...","echo volder | sudo -S curl get.pow.cx | sh")
@@ -203,7 +203,7 @@ end
 
 dep 'pow start' do
 	met? {
-		"~/.pow/myadbox".p.exists?
+		"/Users/hubink/.pow/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev/myadbox ~/.pow/myadbox")
@@ -217,7 +217,7 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	if File.exists? "~/dev/myadbox/db/base.sql"
+	if File.exists? "Users/hubink/dev/myadbox/db/base.sql"
 		log("base.sql file exists..")
 	else
 		log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz)")
@@ -321,9 +321,10 @@ dep 'apache-MAMP start' do
 	httpdconf = File.read("/Applications/MAMP/conf/apache/httpd.conf")
 	File.open("/Applications/MAMP/conf/apache/httpd.conf",'w') do |f|
 		f.write(httpdconf.gsub("/Applications/MAMP/htdocs","/Library/WebServer/Documents"))
+		f.close
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
-	log_shell("Linking Dcument fold","ln -s ~/Dropbox/Myadbox/myadbox /Library/WebServer/Documents/vw")
+	log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/Myadbox/myadbox /Library/WebServer/Documents/vw")
 end
 
 dep 'indesign server start' do
