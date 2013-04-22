@@ -217,7 +217,7 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	if File.exists? "Users/hubink/dev/myadbox/db/base.sql"
+	if File.exists? "/Users/hubink/dev/myadbox/db/base.sql"
 		log("base.sql file exists..")
 		log_shell("delete base.sql..","echo volder|sudo -S rm -rf ~/dev/myadbox/db/base.sql")
 	end
