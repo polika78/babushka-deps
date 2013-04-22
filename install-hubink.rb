@@ -10,19 +10,20 @@ dep 'install hubink' do
 		'cmake',
 		'mysql',
 		'install sequel pro',
-		'myadbox',
+		'clone myadbox',
+		'clone myadserver',
+		'clone myadscripts',
+		'clone indesign',
 		'bundle install',
 		'pow',
 		'pow start',
 		'myadbox db init',
-		'myadserver',
-		'myadscripts',
 		'nodejs'.with("v0.10.4"),
 		'coffee-script'.with("1.6.2"),
 		'myadscripts build',
 		'java se',
-		'sikuli',
-		'indesign',
+		#'sikuli',
+		#'indesign',
 		'apache-MAMP',
 		'dropbox'
 	]
@@ -148,12 +149,39 @@ dep 'install sequel pro' do
 	}
 end
 
-dep 'myadbox' do
+dep 'clone myadbox' do
 	met? {
 		"~/dev/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev/myadbox")
+	}
+end
+
+dep 'clone myadserver' do
+	met? {
+		"~/dev/myadserver".p.exists?
+	}
+	meet {
+		log_shell("Cloning myadserver...","git clone git@github.com:myadbox/myadserver.git \~\/dev/myadserver")
+	}
+end
+
+dep 'clone myadscripts' do
+	met? {
+		"~/dev/myadscripts".p.exists?
+	}
+	meet {
+		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/myadscripts.git \~\/dev/myadscripts")
+	}
+end
+
+dep 'clone indesign' do
+	met? {
+		"~/dev/indesign".p.exists?
+	}
+	meet {
+		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/indesign.git \~\/dev/indesign")
 	}
 end
 
@@ -185,22 +213,9 @@ dep 'myadbox db init' do
 	log_shell("myadbox_db migrate..","(cd ~/dev/myadbox && exec rake db:migrate)")
 end
 
-dep 'myadserver' do
-	met? {
-		"~/dev/myadserver".p.exists?
-	}
-	meet {
-		log_shell("Cloning myadserver...","git clone git@github.com:myadbox/myadserver.git \~\/dev/myadserver")
-	}
-end
-
-dep 'myadscripts' do
-	met? {
-		"~/dev/myadscripts".p.exists?
-	}
-	meet {
-		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/myadscripts.git \~\/dev/myadscripts")
-	}
+dep 'myadbox db import' do
+	log_shell("unzip sql file..", "(cd ~/dev/myadbox/db && exec gzip -d base.sql.gz")
+	log_shell("Importing myadbox_development db","(cd ~/dev/myadbox/db && exec mysql -u root --password=new-password myadbox_development > base.sql)")
 end
 
 dep 'nodejs', :version do
