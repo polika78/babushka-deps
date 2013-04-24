@@ -159,7 +159,7 @@ end
 
 dep 'clone myadbox' do
 	met? {
-		"/Users/hubink/dev/myadbox".p.exists?
+		"~/dev/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadbox...","git clone git@github.com:myadbox/myadbox.git \~\/dev/myadbox")
@@ -168,7 +168,7 @@ end
 
 dep 'clone myadserver' do
 	met? {
-		"/Users/hubink/dev/myadserver".p.exists?
+		"~/dev/myadserver".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadserver...","git clone git@github.com:myadbox/myadserver.git \~\/dev/myadserver")
@@ -177,7 +177,7 @@ end
 
 dep 'clone myadscripts' do
 	met? {
-		"/Users/hubink/dev/myadscripts".p.exists?
+		"~/dev/myadscripts".p.exists?
 	}
 	meet {
 		log_shell("Cloning myadscripts...","git clone git@github.com:myadbox/myadscripts.git \~\/dev/myadscripts")
@@ -186,7 +186,7 @@ end
 
 dep 'clone indesign' do
 	met? {
-		"/Users/hubink/dev/indesign".p.exists?
+		"~/dev/indesign".p.exists?
 	}
 	meet {
 		log_shell("Cloning indesign...","git clone git@github.com:myadbox/indesign.git \~\/dev/indesign")
@@ -199,7 +199,7 @@ end
 
 dep 'pow' do
 	met? {
-		"/Users/hubink/Library/Application Support/Pow".p.exists?
+		"~/Library/Application Support/Pow".p.exists?
 	}
 	meet {
 		log_shell("Installing Pow...","echo volder | sudo -S curl get.pow.cx | sh")
@@ -208,7 +208,7 @@ end
 
 dep 'pow start' do
 	met? {
-		"/Users/hubink/.pow/myadbox".p.exists?
+		"~/.pow/myadbox".p.exists?
 	}
 	meet {
 		log_shell("Start myadbox...","echo volder | sudo -S ln -s ~/dev/myadbox ~/.pow/myadbox")
@@ -221,7 +221,7 @@ dep 'myadbox db init' do
 end
 
 dep 'myadbox db import' do
-	if File.exists? "/Users/hubink/dev/myadbox/db/base.sql"
+	if File.exists? "#{Dir.home}/dev/myadbox/db/base.sql"
 		log("base.sql file exists..")
 		log_shell("delete base.sql..","echo volder|sudo -S rm -rf ~/dev/myadbox/db/base.sql")
 	end
@@ -330,23 +330,27 @@ dep 'apache-MAMP start' do
 		f.close
 	end
 	log_shell("Start MAMP..","/Applications/MAMP/bin/start.sh")
-	if File.exists? "/Library/WebServer/Documents/vw"
-		log("Already exists Symlink of /Libray/WebServer/Documents")
+	if File.exists? "#{Dir.home}/Dropbox"
+		log("Drobox folder will be symbolic linked...")
+		if File.exists? "/Library/WebServer/Documents/vw"
+			log("Already exists Symlink of /Libray/WebServer/Documents/vw")
+		else
+			log_shell("Linking /Library/WebServer/Documents/vw folder","echo volder | sudo -S ln -s ~/Dropbox/myadbox /Library/WebServer/Documents/vw")	
+		end
+		if File.exists? "/Library/WebServer/Documents/vw/production_templates"
+			log("Already exists Symlink of ~/Dropbox/myadbox/production_templates")
+		else
+			log_shell("Linking Document folder","echo volder | sudo -S ln -s ~/Dropbox/myadbox/templates ~/Dropbox/myadbox/production_templates")	
+		end
 	else
-		log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/myadbox /Library/WebServer/Documents/vw")
-		
-	end
-	if File.exists? "/Library/WebServer/Documents/vw/production_templates"
-		log("Already exists Symlink of ~/Dropbox/myadbox/production_templates")
-	else
-		log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/myadbox/templates ~/Dropbox/myadbox/production_templates")	
+		log("There is no Drobox folder")
 	end
 end
 
 dep 'indesign server start' do
-	config = File.read("/Users/hubink/dev/myadbox/config/config.yml")
-	File.open("/Users/hubink/dev/myadbox/config/config.yml",'w') do |f|
-		f.write(config.gsub("/Volumes/Hubink/myadscripts/build/indesign/server","/Users/hubink/dev/myadscripts/build/indesign/server"))
+	config = File.read("#{Dir.home}/dev/myadbox/config/config.yml")
+	File.open("#{Dir.home}/dev/myadbox/config/config.yml",'w') do |f|
+		f.write(config.gsub("/Volumes/Hubink/myadscripts/build/indesign/server","#{Dir.home}/dev/myadscripts/build/indesign/server"))
 		f.close
 	end
 	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
@@ -362,7 +366,7 @@ dep "tomcat 7" do
 			log_shell("unzip apache-tomcat-7.0.39.tar","tar xvf apache-tomcat-7.0.39.tar")
 			log_shell("move to /usr/local","echo volder | sudo -S mv ~/Setup_package/apache-tomcat-7.0.39 /usr/local")
 		end
-		log_shell("make symlink /Library/Tomcat","echo volder | sudo -S ln -s /urs/local/apache-tomcat-7.0.39 /Library/Tomcat")
+		log_shell("make symlink /Library/Tomcat","echo volder | sudo -S ln -s /usr/local/apache-tomcat-7.0.39 /Library/Tomcat")
 		log("changing permission")
 		shell("echo volder | sudo -S chown -R hubink /Library/Tomcat")
 		shell("echo volder | sudo -S chmod +x /Library/Tomcat/bin/*.sh")
