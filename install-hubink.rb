@@ -378,7 +378,15 @@ dep "teamcity" do
 		shell("echo volder | sudo -S ln -s /usr/local/TeamCity /Library/TeamCity")
 		shell("echo volder | sudo -S chown -R hubink /Library/TeamCity")
 		shell("echo volder | sudo -S chmod +x /Library/TeamCity/bin/*.sh")
+	}
+end
 
+dep "import build project" do
+	met? {
+		"~/.BuildServer/config/myadbox".p.exists
+	}
+	meet {
+		log_shell("myadbox build configuration importing..","echo volder | sudo -S cp -fR ~/Setup_package/buildconfig/* ~/.BuildServer/config")
 	}
 end
 
