@@ -336,7 +336,7 @@ dep 'apache-MAMP start' do
 		log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/myadbox /Library/WebServer/Documents/vw")
 		
 	end
-	if File.exists? "/Library/WebServer/Documents/production_templates"
+	if File.exists? "/Library/WebServer/Documents/vw/production_templates"
 		log("Already exists Symlink of ~/Dropbox/myadbox/production_templates")
 	else
 		log_shell("Linking Dcument fold","echo volder | sudo -S ln -s ~/Dropbox/myadbox/templates ~/Dropbox/myadbox/production_templates")	
