@@ -28,6 +28,11 @@ dep 'install hubink' do
 		#'dropbox',
 		'apache-MAMP',
 		'apache-MAMP start',
+		#CI Server
+		'tomcat 7',
+		'teamcity',
+		'teamcity server start',
+		'teamcity build agent',
 		'indesign server start'
 	]
 end
@@ -347,4 +352,41 @@ dep 'indesign server start' do
 	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
 end
 
+#CI Setting with TeamCity
+dep "tomcat 7" do
+	met? {
+		"/Library/Tomcat".p.exists?
+	}
+	meet {
+		log_shell("unzip apache-tomcat-7.0.39.tar","tar xvf apache-tomcat-7.0.39.tar")
+		log_shell("move to /usr/local","echo volder | sudo -S mv ~/Setup_package/apache-tomcat-7.0.39 to /usr/local")
+		log_shell("make symlink /Library/Tomcat","echo volder | sudo -S ln -s /urs/local/apache-tomcat-7.0.39 /Library/Tomcat")
+		log("changing permission")
+		shell("sudo chown -R hubink /Library/Tomcat")
+		shell("sudo chmod +x /Library/Tomcat/bin/*.sh")
+	}
+end
+
+dep "teamcity" do
+	met? {
+		"/Library/TeamCity".p.exists?
+	}
+	meet {
+		log_shell("unzip TeamCity-7.1.5.tar.gz","gzip -d < TeamCity-7.1.5.tar.gz | tar xvf -")
+		log("installing..")
+		shell("echo volder | sudo -S mv ~/Setup_package/TeamCity to /usr/local")
+		shell("echo volder | sudo -S ln -s /usr/local/TeamCity /Library/TeamCity")
+		shell("echo volder | sudo -S chown -R hubink /Library/TeamCity")
+		shell("echo volder | sudo -S chmod +x /Library/TeamCity/bin/*.sh")
+
+	}
+end
+
+dep "teamcity server start" do
+	log_shell("Start TeamCity server","/Library/TeamCity/bin/teamcity-server.sh start")
+end
+
+dep "teamcity build agent" do
+	log_shell("Start TeamCity build agent","echo volder | sudo -S /usr/libexec/StartupItemContext /Library/TeamCity/buildAgent/bin agent.sh start")
+end
 
