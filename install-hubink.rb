@@ -359,7 +359,7 @@ dep "tomcat 7" do
 	}
 	meet {
 		log_shell("unzip apache-tomcat-7.0.39.tar","tar xvf apache-tomcat-7.0.39.tar")
-		log_shell("move to /usr/local","echo volder | sudo -S mv ~/Setup_package/apache-tomcat-7.0.39 to /usr/local")
+		log_shell("move to /usr/local","echo volder | sudo -S mv ~/Setup_package/apache-tomcat-7.0.39 /usr/local")
 		log_shell("make symlink /Library/Tomcat","echo volder | sudo -S ln -s /urs/local/apache-tomcat-7.0.39 /Library/Tomcat")
 		log("changing permission")
 		shell("sudo chown -R hubink /Library/Tomcat")
@@ -374,7 +374,7 @@ dep "teamcity" do
 	meet {
 		log_shell("unzip TeamCity-7.1.5.tar.gz","gzip -d < TeamCity-7.1.5.tar.gz | tar xvf -")
 		log("installing..")
-		shell("echo volder | sudo -S mv ~/Setup_package/TeamCity to /usr/local")
+		shell("echo volder | sudo -S mv ~/Setup_package/TeamCity /usr/local")
 		shell("echo volder | sudo -S ln -s /usr/local/TeamCity /Library/TeamCity")
 		shell("echo volder | sudo -S chown -R hubink /Library/TeamCity")
 		shell("echo volder | sudo -S chmod +x /Library/TeamCity/bin/*.sh")
