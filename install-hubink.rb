@@ -397,6 +397,9 @@ dep "import build project" do
 		"~/.BuildServer/config/myadbox".p.exists?
 	}
 	meet {
+
+		shell("mkdir ~/.BuildServer") unless File.exists? "#{Dir.home}/.BuildServer"
+		shell("mkdir ~/.BuildServer/config") unless File.exists? "#{Dir.home}/.BuildServer/config"
 		log_shell("myadbox build configuration importing..","echo volder | sudo -S cp -fR ~/Setup_package/buildconfig/* ~/.BuildServer/config")
 	}
 end
