@@ -364,8 +364,8 @@ dep "tomcat 7" do
 		end
 		log_shell("make symlink /Library/Tomcat","echo volder | sudo -S ln -s /urs/local/apache-tomcat-7.0.39 /Library/Tomcat")
 		log("changing permission")
-		shell("sudo chown -R hubink /Library/Tomcat")
-		shell("sudo chmod +x /Library/Tomcat/bin/*.sh")
+		shell("echo volder | sudo -S chown -R hubink /Library/Tomcat")
+		shell("echo volder | sudo -S chmod +x /Library/Tomcat/bin/*.sh")
 	}
 end
 
