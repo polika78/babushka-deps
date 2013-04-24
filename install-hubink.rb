@@ -32,8 +32,8 @@ dep 'install hubink' do
 		'tomcat 7',
 		'teamcity',
 		"import build project",
-		'teamcity server start',
 		'teamcity build agent',
+		'teamcity server start',
 		'indesign server start'
 	]
 end
@@ -403,11 +403,13 @@ dep "import build project" do
 	}
 end
 
+dep "teamcity build agent" do
+	log_shell("Start TeamCity build agent","/Library/TeamCity/buildAgent/bin/agent.sh start")
+end
+
 dep "teamcity server start" do
 	log_shell("Start TeamCity server","/Library/TeamCity/bin/teamcity-server.sh start")
 end
 
-dep "teamcity build agent" do
-	log_shell("Start TeamCity build agent","echo volder | sudo -S /usr/libexec/StartupItemContext /Library/TeamCity/buildAgent/bin/agent.sh start")
-end
+
 
