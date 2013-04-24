@@ -282,7 +282,7 @@ dep 'indesign' do
 		shell 'hdiutil attach ~/Setup_package/InDesignServer_8_LS18.dmg'
 		shell 'open -a /Volumes/Adobe\ InDesign\ CS6\ Server/Adobe\ InDesign\ CS6\ Server/Install.app'
 		shell 'touch /tmp/installing_indesign'
-		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Setup_package/Indesign-Install.sikul'
+		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Setup_package/Indesign-Install.skl'
 		count = 0
 		while File.exists? "/tmp/installing_indesign"
 			count = count + 1
@@ -303,7 +303,7 @@ dep 'dropbox' do
 		shell 'touch /tmp/installing_dropbox'
 		shell('echo volder | sudo -S cp -Rfp ~/Setup_package/Dropbox.app /Applications/')
 		shell 'open -a /Applications//Dropbox.app'
-		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Setup_package/Dropbox-Install.sikul'
+		shell 'open -g /Applications/Sikuli-IDE.app --args ~/Setup_package/Dropbox-Install.skl'
 		count = 0
 		while File.exists? "/tmp/installing_dropbox"
 			count = count + 1
