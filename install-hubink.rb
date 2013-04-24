@@ -31,6 +31,7 @@ dep 'install hubink' do
 		#CI Server
 		'tomcat 7',
 		'teamcity',
+		"import build project",
 		'teamcity server start',
 		'teamcity build agent',
 		'indesign server start'
@@ -348,12 +349,14 @@ dep 'apache-MAMP start' do
 end
 
 dep 'indesign server start' do
-	config = File.read("#{Dir.home}/dev/myadbox/config/config.yml")
-	File.open("#{Dir.home}/dev/myadbox/config/config.yml",'w') do |f|
-		f.write(config.gsub("/Volumes/Hubink/myadscripts/build/indesign/server","#{Dir.home}/dev/myadscripts/build/indesign/server"))
-		f.close
+	if File.exists? '/Applications/Adobe\ InDesign\ CS6\ Server/InDesignServer'
+		config = File.read("#{Dir.home}/dev/myadbox/config/config.yml")
+		File.open("#{Dir.home}/dev/myadbox/config/config.yml",'w') do |f|
+			f.write(config.gsub("/Volumes/Hubink/myadscripts/build/indesign/server","#{Dir.home}/dev/myadscripts/build/indesign/server"))
+			f.close
+		end
+		shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
 	end
-	shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
 end
 
 #CI Setting with TeamCity
