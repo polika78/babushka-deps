@@ -387,6 +387,6 @@ dep "teamcity server start" do
 end
 
 dep "teamcity build agent" do
-	log_shell("Start TeamCity build agent","echo volder | sudo -S /usr/libexec/StartupItemContext /Library/TeamCity/buildAgent/bin agent.sh start")
+	log_shell("Start TeamCity build agent","echo volder | sudo -S /usr/libexec/StartupItemContext /Library/TeamCity/buildAgent/bin/agent.sh start")
 end
 
