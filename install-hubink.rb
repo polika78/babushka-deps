@@ -394,7 +394,7 @@ end
 
 dep "import build project" do
 	met? {
-		"~/.BuildServer/config/myadbox".p.exists
+		"~/.BuildServer/config/myadbox".p.exists?
 	}
 	meet {
 		log_shell("myadbox build configuration importing..","echo volder | sudo -S cp -fR ~/Setup_package/buildconfig/* ~/.BuildServer/config")
