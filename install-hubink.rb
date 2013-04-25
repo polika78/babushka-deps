@@ -122,6 +122,9 @@ dep 'mysql' do
 		log_shell("Installing MySQL... by homebrew","brew install mysql")
 		log_shell("Starting mysql","mysql.server start")
 		log_shell("Setting root password","mysqladmin -u root password 'new-password'")
+		log("setting auto start")
+		shell("echo volder | sudo -S cp com.mysql.mysqld.plist /Library/LaunchDaemons")
+		shell("echo volder | sudo -S chown -R hubink /Library/LaunchDaemons/*")
 	}
 end
 
@@ -386,10 +389,17 @@ end
 
 dep "teamcity build agent" do
 	log_shell("Start TeamCity build agent","/Library/TeamCity/buildAgent/bin/agent.sh start")
+	log("Auto start setup")
+	shell("echo volder |sudo -S cp jetbrains.teamcity.BuildAgent.plist /Library/TeamCity/buildAgent/bin")
+	shell("echo volder | sudo -S chmod +x /Library/TeamCity/buildAgent/launcher/bin/*")
+	shell("/Library/TeamCity/buildAgent/bin/mac.launch.sh load")
 end
 
 dep "teamcity server start" do
 	log_shell("Start TeamCity server","/Library/TeamCity/bin/teamcity-server.sh start")
+	log("Teamcity Server Auto start setup")
+	shell("echo volder |sudo -S cp jetbrains.teamcity.server.plist /Library/LaunchDaemons")
+	shell("launchctl load /Library/LaunchDaemons/jetbrains.teamcity.server.plist")
 end
 
 
