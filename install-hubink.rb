@@ -392,7 +392,7 @@ dep "teamcity build agent" do
 	log("Auto start setup")
 	shell("echo volder |sudo -S cp jetbrains.teamcity.BuildAgent.plist /Library/TeamCity/buildAgent/bin")
 	shell("echo volder | sudo -S chmod +x /Library/TeamCity/buildAgent/launcher/bin/*")
-	shell("/Library/TeamCity/buildAgent/bin/mac.launch.sh load")
+	shell("/Library/TeamCity/buildAgent/bin/mac.launchd.sh load")
 end
 
 dep "teamcity server start" do
