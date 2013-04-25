@@ -40,25 +40,7 @@ end
 
 dep 'path permission' do
 	path = '/usr/local/*'
-	# met? {
-	# 	result = false
-	# 	paths.each do |path|
-	# 		log("path permission chek #{path}")
-	# 		result = File.writable?(path)
-	# 		puts result
-	# 		if result
-	# 			log("already set path permission of #{path}")
-	# 		else
-	# 			log("need path permission of #{path}")
-	# 		end
-	# 	end
-	# 	result
-	# }
-	# meet {
-	# 	paths.each do |path|
 	log_shell("Change permission of #{path}","echo volder | sudo -S chown -R hubink #{path}")
-	# 	# end
-	# }
 end
 
 dep 'bundler', :version do
@@ -118,7 +100,6 @@ dep 'ruby', :version do
 		in_path? "ruby >= #{version}0p"
 	}
 	meet {
-		#log_shell("Make sure latest RVM..","rvm get stable --autolibs=enable")
 		log_shell("Installing ruby..#{version}","rvm install #{version} --autolibs=enable")
 		log_shell("Set ruby-#{version} as default","rvm --default use #{version}")
 	}
@@ -152,7 +133,6 @@ dep 'install sequel pro' do
 		log("Installing Sequel Pro..")
 		shell "curl -O http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg"
 		shell "hdiutil attach sequel-pro-1.0.1.dmg"
-		#source("http://sequel-pro.googlecode.com/files/sequel-pro-1.0.1.dmg")
 		shell('echo volder | sudo -S cp -Rfp /Volumes/Sequel\ Pro\ 1.0.1/ /Applications/')
 		shell 'hdiutil detach /Volumes/Sequel\ Pro\ 1.0.1/'
 	}
@@ -268,7 +248,6 @@ dep 'sikuli', :template => 'installer' do
 	}
 	meet {
 		log("sikuli installing")
-		#source("~/Downloads/sikuli-r930-osx.10.6.dmg")
 		shell('echo volder | sudo -S cp -Rfp ~/Setup_package/Sikuli-IDE.app /Applications/')
 	}
 end
@@ -344,7 +323,7 @@ dep 'apache-MAMP start' do
 			log_shell("Linking Document folder","echo volder | sudo -S ln -s ~/Dropbox/myadbox/templates ~/Dropbox/myadbox/production_templates")	
 		end
 	else
-		log("There is no Drobox folder")
+		log("Dropbox is not installed")
 	end
 end
 
@@ -356,6 +335,8 @@ dep 'indesign server start' do
 			f.close
 		end
 		shell '/Applications/Adobe\ InDesign\ CS6\ Server/IndesignServer -port 12345'
+	else
+		log("InDesign Server is not installed")
 	end
 end
 
